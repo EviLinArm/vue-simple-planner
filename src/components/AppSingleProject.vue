@@ -3,11 +3,19 @@
     <div class="project-color" :class="{selected: project.selected}"></div>
     <div class="project__box">
       <div class="project__content">
-        <div class="content-title">{{ project.title }}</div>
+        <div class="content-title">
+          {{ project.title }}
+        </div>
         <div class="content__buttons">
-          <div class="buttons__button buttons-delete" @click="deleteProject(project.id)"></div>
-          <div class="buttons__button buttons-edit" @click="editProject(project.id)"></div>
-          <div class="buttons__button buttons-select" :class="{selected: project.selected}" @click.stop="selectProject(project)"></div>
+          <div class="buttons__button buttons-delete" @click="deleteProject(project.id)">
+            <IconDelete/>
+          </div>
+          <div class="buttons__button buttons-edit" @click="editProject(project.id)">
+            <IconEdit/>
+          </div>
+          <div class="buttons__button buttons-select" :class="{selected: project.selected}" @click.stop="selectProject(project)">
+            <IconCheck/>
+          </div>
         </div>
       </div>
       <div v-if="this.spoiler" class="project__details">
@@ -18,7 +26,11 @@
 </template>
 
 <script>
+import IconCheck from '../components/Icons/IconCheck.vue'
+import IconDelete from '../components/Icons/IconDelete.vue'
+import IconEdit from '../components/Icons/IconEdit.vue'
 export default {
+  components: {IconCheck, IconDelete, IconEdit},
   props: ['project'],
   data() {
     return {
@@ -45,9 +57,9 @@ export default {
 <style scoped>
 .project {
   display: flex;
-  border-radius: 5px;
   height: 100%;
   background: #fff;
+  border-radius: 5px;
   overflow: hidden;
   transition: box-shadow 0.5s;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
@@ -59,6 +71,9 @@ export default {
   opacity: 0.7;
 }
 .project:hover .project-color {
+  opacity: 0.7;
+}
+.project:hover .project__box .project__content .content__buttons{
   opacity: 0.7;
 }
 .project-color {
@@ -94,31 +109,31 @@ export default {
 }
 .content__buttons {
   display: flex;
+  transition: opacity 0.25s;
 }
 .buttons__button {
   margin-right: 15px;
   cursor: pointer;
 }
-.buttons__button.selected {
-  opacity: 0.7;
+.buttons__button:hover .icon,
+.buttons__button.selected:hover .icon {
+  fill: #2f2f2f
+}
+.buttons__button .icon {
+  background-position: center;
+  background-size: contain;
+  fill: #555;
+  width: 25px;
+  height: 25px;
+  transition: fill 0.25s;
 }
 .buttons__button:last-child {
   margin-right: 0;
 }
-.buttons-delete {
-  background: #152446;
-  width: 25px;
-  height: 25px;
+.buttons-select.selected .icon{
+  fill: palevioletred;
 }
-.buttons-edit {
-  background: #696930;
-  width: 25px;
-  height: 25px;
+.buttons-select .icon{
+  fill: teal;
 }
-.buttons-select {
-  background: #984523;
-  width: 25px;
-  height: 25px;
-}
-
 </style>

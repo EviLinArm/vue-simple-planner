@@ -1,0 +1,58 @@
+{
+  "projects": [
+    {
+      "title": "Project 1",
+      "details": "Project 1 - One",
+      "selected": true,
+      "id": 1
+    },
+    {
+      "title": "Project 2",
+      "details": "Project 2 - More one details",
+      "selected": true,
+      "id": 2
+    },
+    {
+      "title": "Project 3",
+      "details": "Project 3 - More more details",
+      "selected": true,
+      "id": 3
+    },
+    {
+      "title": "Project 4",
+      "details": "Project 4 - Four data details",
+      "selected": false,
+      "id": 4
+    },
+    {
+      "title": "Project 5",
+      "details": "Project 5 - Five data details",
+      "selected": true,
+      "id": 5
+    },
+    {
+      "title": "Project 6",
+      "details": "Project 6 - Six data details",
+      "selected": false,
+      "id": 6
+    },
+    {
+      "title": "Project 7",
+      "details": "Project 7 - Code name test!",
+      "selected": false,
+      "id": 7
+    },
+    {
+      "title": "Project 8",
+      "details": "Project 8 - Test eight data!",
+      "selected": false,
+      "id": 8
+    },
+    {
+      "title": "Project 9",
+      "details": "Project 9 -Just nine!",
+      "selected": false,
+      "id": 9
+    }
+  ]
+}

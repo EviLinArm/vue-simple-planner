@@ -12,20 +12,42 @@ export default {
   components: {AppSingleProject, AppFilterNav},
   data () {
     return {
-      projects: [
-        {title: 'Project 1', id: 1, details: 'Project One - details', selected: true},
-        {title: 'Project 2', id: 2, details: 'Project Two - details', selected: false},
-        {title: 'Project 3', id: 3, details: 'Project Three - details', selected: true},
-      ],
+      projects: [],
       filter: null
     }
   },
+  mounted() {
+    fetch('http://localhost:3000/projects')
+        .then((res) => res.json())
+        .then((data) => this.projects = data)
+        .catch(e => console.log(e, 'Run npx json-server data/db.json'))
+  },
   methods: {
-    isSelected(project) {
+    async isSelected(project) {
       project.selected = !project.selected
+      if (project.id) {
+        const data = {
+          ...project,
+          selected: project.selected
+        }
+        delete data.id
+        await fetch(`http://localhost:3000/projects/${project.id}`, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+      }
     },
-    deleteHandler(id) {
+    async deleteHandler(id) {
       this.projects = this.projects.filter(project => project.id !== id)
+      if (id) {
+        await fetch(`http://localhost:3000/projects/${id}`, {
+          method: 'DELETE',
+        })
+      }
     },
     filterHandler(status) {
       this.filter = status

@@ -1,3 +1,10 @@
 <template>
-  <h1>Add</h1>
+  <app-project-form/>
 </template>
+
+<script>
+import appProjectForm from "../components/AppProjectForm.vue";
+export default {
+  components: {appProjectForm}
+}
+</script>
