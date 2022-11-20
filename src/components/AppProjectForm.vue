@@ -30,7 +30,7 @@ export default {
     },
     projectButton: {
       type: String,
-      default: 'Creat project',
+      default: 'Create project',
       required: false,
     },
   },

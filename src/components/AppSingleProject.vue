@@ -1,6 +1,6 @@
 <template>
   <div class="project" @click="spoilerHandler">
-    <div class="project-color" :class="{selected: project.selected}"></div>
+    <div class="project-color" :class="{selected: this.project.selected}"></div>
     <div class="project__box">
       <div class="project__content">
         <div class="content-title">
@@ -13,7 +13,7 @@
           <div class="buttons__button buttons-edit" @click="editProject(project.id)">
             <IconEdit/>
           </div>
-          <div class="buttons__button buttons-select" :class="{selected: project.selected}" @click.stop="selectProject(project)">
+          <div class="buttons__button buttons-select" :class="{selected: this.project.selected}" @click.stop="selectProject(project)">
             <IconCheck/>
           </div>
         </div>
