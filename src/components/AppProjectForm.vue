@@ -25,7 +25,8 @@ export default {
   },
   props: {
     project: {
-      default: '',
+      type: Object,
+      default: {},
       required: false
     },
     projectButton: {
@@ -35,7 +36,7 @@ export default {
     },
   },
   methods: {
-    async handleSubmit() {
+    handleSubmit() {
       this.buttonDis = true;
       if (this.project.id) {
         const data = {
@@ -43,35 +44,29 @@ export default {
           details: this.details,
           selected: this.project.selected
         }
-        await fetch(`http://localhost:3000/projects/${this.project.id}`, {
+        fetch(`http://localhost:3000/projects/${this.project.id}`, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
-        })
-        this.$router.push('/')
-            // .then((res) => res.json())
-            // .then((data) => console.log(data))
+        }).then(() => this.$router.push('/'))
       } else {
         const data = {
           title: this.title,
           details: this.details,
           selected: false
         }
-        await fetch('http://localhost:3000/projects', {
+        fetch('http://localhost:3000/projects', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
-        })
+        }).then(() => this.$router.push('/'))
       }
-      this.buttonDis = false
-      this.title = ''
-      this.details = ''
     }
   },
   watch: {

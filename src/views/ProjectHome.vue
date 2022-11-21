@@ -23,7 +23,7 @@ export default {
         .catch(e => console.log(e, 'Run npx json-server data/db.json'))
   },
   methods: {
-    async isSelected(project) {
+    isSelected(project) {
       project.selected = !project.selected
       if (project.id) {
         const data = {
@@ -31,7 +31,7 @@ export default {
           selected: project.selected
         }
         delete data.id
-        await fetch(`http://localhost:3000/projects/${project.id}`, {
+        fetch(`http://localhost:3000/projects/${project.id}`, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -41,10 +41,10 @@ export default {
         })
       }
     },
-    async deleteHandler(id) {
+    deleteHandler(id) {
       this.projects = this.projects.filter(project => project.id !== id)
       if (id) {
-        await fetch(`http://localhost:3000/projects/${id}`, {
+        fetch(`http://localhost:3000/projects/${id}`, {
           method: 'DELETE',
         })
       }

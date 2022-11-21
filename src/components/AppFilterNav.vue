@@ -10,7 +10,13 @@
 
 <script>
 export default {
-  props: ['filter'],
+  props: {
+    filter: {
+      type: Boolean,
+      default: null,
+      required: false
+    },
+  },
 }
 </script>
 
